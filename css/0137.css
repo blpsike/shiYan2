@@ -1,0 +1,359 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Microsoft Yahei", sans-serif;
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  /* 背景半透明遮罩，提升文字可读性 */
+  background-color: rgba(0, 0, 0, 0.3);
+  background-blend-mode: overlay;
+}
+
+/* 上部容器：唱片+音乐介绍 */
+.upper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 60px;
+}
+
+/* 唱片容器 */
+.record-container {
+  width: 280px;
+  height: 280px;
+  position: relative;
+}
+
+.record-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+#record-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* 唱片默认背景图（可替换为你的图片） */
+  background: url("../img/record.png") center/cover;
+}
+
+/* 唱片旋转动画 */
+.rotate-play {
+  animation: rotate 8s linear infinite;
+}
+
+.rotate-pause {
+  animation-play-state: paused;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 音乐介绍容器 */
+.introduction-container {
+  text-align: center;
+}
+
+.text-container {
+  font-size: 24px;
+  line-height: 1.8;
+}
+
+#music-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.author-container {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 播放器主体容器 */
+.audio-box {
+  width: 600px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.audio-container {
+  width: 100%;
+}
+
+/* 进度条样式 */
+.a-progress {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.pgs-total {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.pgs-play {
+  height: 100%;
+  background-color: #4cd964;
+  border-radius: 3px;
+  transition: width 0.2s linear;
+  position: relative;
+}
+
+/* 进度条滑块（可选） */
+.pgs-play::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.pgs-total:hover .pgs-play::after {
+  opacity: 1;
+}
+
+/* 控制按钮区域 */
+.a-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time-container {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 中间控制按钮容器 */
+.center-button-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 通用图标样式 */
+.center-icon, .bottom-icon {
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.center-icon:hover, .bottom-icon:hover {
+  opacity: 1;
+}
+
+/* 播放/暂停按钮 */
+#playPause {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #4cd964;
+  background-image: url("../img/play.png"); /* 播放图标 */
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center 52%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#playPause.pause {
+  background-image: url("../img/pause.png"); /* 暂停图标 */
+  background-size: 16px;
+  background-position: center;
+}
+
+/* 播放模式图标 */
+.mode {
+  background-image: url("../img/mode.png");
+}
+
+/* 上一首/下一首图标 */
+.s-right {
+  background-image: url("../img/prev.png");
+}
+
+.s-left {
+  background-image: url("../img/next.png");
+}
+
+/* 音量图标 */
+.volume {
+  background-image: url("../img/volume.png");
+}
+
+/* 音量调节滑块 */
+#volumn-togger {
+  width: 80px;
+  height: 6px;
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: -20px;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#volumn-togger::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.volume:hover + #volumn-togger {
+  opacity: 1;
+}
+
+/* 底部按钮容器 */
+.bottom-button-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 列表图标 */
+.list {
+  background-image: url("../img/list.png");
+}
+
+/* 倍速按钮 */
+.speed {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.speed:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* MV图标 */
+.MV {
+  background-image: url("../img/mv.png");
+}
+
+/* 音乐列表样式 */
+.music-list {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.music-list.show {
+  transform: translateX(0);
+}
+
+.music-list-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.line {
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+.all-list > div {
+  padding: 12px 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.all-list > div:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.all-list > div.active {
+  color: #4cd964;
+  font-weight: bold;
+}
+
+/* 列表关闭遮罩 */
+.close-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+.close-list.show {
+  display: block;
+}
+
+/* 响应式适配（可选） */
+@media (max-width: 768px) {
+  .audio-box {
+    width: 90%;
+  }
+  .upper-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
